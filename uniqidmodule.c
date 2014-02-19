@@ -78,6 +78,7 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
 /* The following function call contains text that is licensed under the
  * CC BY 3.0 License (http://creativecommons.org/licenses/by/3.0/)
  * Copyright (c) the PHP Documentation Group
+ * See http://us3.php.net/uniqid for the original text.
  */
 
 PyDoc_STRVAR(docs,
