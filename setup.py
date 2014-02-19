@@ -7,7 +7,7 @@ except ImportError:
 
 def read_long_description():
     try:
-        return open("README.md").read()
+        return open("README.rst").read()
     except Exception:
         return ''
 
