@@ -44,7 +44,8 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
 #if HAVE_USLEEP && !defined(WIN32)
     if (!more_entropy) {
 #if defined(__CYGWIN__)
-        PyErr_SetString(PyExc_TypeError, "You must use more_entropy under CYGWIN");
+        const char *err = "You must use more_entropy under CYGWIN";
+        PyErr_SetString(PyExc_TypeError, err);
         return NULL;
 #else
         usleep(1);
@@ -74,6 +75,11 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
     return PyUnicode_DecodeUTF8(uniqid, strlen(uniqid), NULL);
 }
 
+/* The following function call contains text that is licensed under the
+ * CC BY 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+ * Copyright (c) the PHP Documentation Group
+ */
+
 PyDoc_STRVAR(docs,
 "uniqid([prefix=''[, more_entropy=False]]) -> str\n\
 Gets a prefixed unique identifier based on the current\n\
@@ -90,7 +96,9 @@ more_entropy\n\
     If set to True, uniqid() will add additional entropy (using\n\
     the combined linear congruential generator) at the end of\n\
     the return value, which increases the likelihood that\n\
-    the result will be unique.\
+    the result will be unique.\n\
+\n\
+Returns the unique identifier, as a string.\
 ");
 
 static PyMethodDef UniqidMethods[] = {
