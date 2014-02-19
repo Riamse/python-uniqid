@@ -1,10 +1,26 @@
 /*
- * Whether this file is subject to the PHP license is ambiguous, so until
- * I clarify things, I'll just leave this file here.
+   +----------------------------------------------------------------------+
+   | PHP Version 5                                                        |
+   +----------------------------------------------------------------------+
+   | Copyright (c) 1997-2014 The PHP Group                                |
+   +----------------------------------------------------------------------+
+   | This source file is subject to version 3.01 of the PHP license,      |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.php.net/license/3_01.txt                                  |
+   | If you did not receive a copy of the PHP license and are unable to   |
+   | obtain it through the world-wide-web, please send a note to          |
+   | license@php.net so we can mail you a copy immediately.               |
+   +----------------------------------------------------------------------+
+   | Author: Stig Sæther Bakken <ssb@php.net>                             |
+   | Port: Riamse <riamse@protonmail.com>                                 |
+   +----------------------------------------------------------------------+
  */
 
 
 #include <Python.h>
+#include <moduleobject.h>
+#include <funcobject.h>
 #include <time.h>
 
 static PyObject *
@@ -68,10 +84,10 @@ prefix\n\
     simultaneously on several hosts that might happen to generate\n\
     the identifier at the same microsecond.\n\
     With an empty prefix, the returned string will be 13 characters\n\
-    long. If more_entropy is TRUE, it will be 23 characters.\n\
+    long. If more_entropy is True, it will be 23 characters.\n\
 \n\
 more_entropy\n\
-    If set to TRUE, uniqid() will add additional entropy (using\n\
+    If set to True, uniqid() will add additional entropy (using\n\
     the combined linear congruential generator) at the end of\n\
     the return value, which increases the likelihood that\n\
     the result will be unique.\
