@@ -19,8 +19,6 @@
 
 
 #include <Python.h>
-#include <moduleobject.h>
-#include <funcobject.h>
 #include <time.h>
 
 static PyObject *
