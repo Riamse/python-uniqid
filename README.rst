@@ -1,8 +1,6 @@
 python-uniqid
 =============
 
-Generate a unique ID, à la PHP.
-
 I've run into enough cases where I want to get the exact equivalent of `PHP's
 uniqid function`_.
 
