@@ -64,6 +64,7 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
         lcg_res = PyObject_CallObject(lcg, NULL);
         actual_res = PyFloat_AS_DOUBLE(lcg_res);
         asprintf(&uniqid, "%s%08x%05x%.8F", prefix, sec, usec, actual_res * 10);
+        Py_DECREF(random); Py_DECREF(lcg); Py_DECREF(lcg_res);
     } else {
         asprintf(&uniqid, "%s%08x%05x", prefix, sec, usec);
     }
