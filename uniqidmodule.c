@@ -69,7 +69,9 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
         asprintf(&uniqid, "%s%08x%05x", prefix, sec, usec);
     }
 
-    return PyUnicode_DecodeUTF8(uniqid, strlen(uniqid), NULL);
+    PyObject* ret = PyUnicode_DecodeUTF8(uniqid, strlen(uniqid), NULL);
+    free(uniqid);
+    return ret;
 }
 
 /* The following function call contains text that is licensed under the
