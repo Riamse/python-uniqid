@@ -22,6 +22,7 @@
 static PyObject *
 uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
 {
+    PyObject *ret;
     const char *prefix = "";
 #if defined(__CYGWIN__)
     int more_entropy = 1;
@@ -57,19 +58,18 @@ uniqid_uniqid(PyObject *self, PyObject *args, PyObject *kwargs)
      * digits for usecs.
      */
     if (more_entropy) {
-        PyObject *random, *lcg, *lcg_res;
+        PyObject *random, *lcg;
         double actual_res;
         random = PyImport_ImportModule("random");
-        lcg = PyObject_GetAttrString(random, "random");
-        lcg_res = PyObject_CallObject(lcg, NULL);
-        actual_res = PyFloat_AS_DOUBLE(lcg_res);
+        lcg = PyObject_CallMethod(random, "random", NULL);
+        actual_res = PyFloat_AS_DOUBLE(lcg);
         asprintf(&uniqid, "%s%08x%05x%.8F", prefix, sec, usec, actual_res * 10);
-        Py_DECREF(random); Py_DECREF(lcg); Py_DECREF(lcg_res);
+        Py_DECREF(random); Py_DECREF(lcg);
     } else {
         asprintf(&uniqid, "%s%08x%05x", prefix, sec, usec);
     }
 
-    PyObject* ret = PyUnicode_DecodeUTF8(uniqid, strlen(uniqid), NULL);
+    ret = PyUnicode_DecodeUTF8(uniqid, strlen(uniqid), NULL);
     free(uniqid);
     return ret;
 }
