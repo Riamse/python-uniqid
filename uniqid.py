@@ -15,7 +15,3 @@ def uniqid(prefix='', more_entropy=False):
 
     uniqid = prefix + uniqid
     return uniqid
-
-if __name__ == '__main__':
-    print uniqid("set_")
-    print uniqid("set_", True)
